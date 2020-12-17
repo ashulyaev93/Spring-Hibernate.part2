@@ -19,7 +19,7 @@ public class User {
             mappedBy = "user",
             fetch = FetchType.EAGER
     )
-    Set<Article> articleSet = new HashSet<>();
+    Set<Product> productSet = new HashSet<>();
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
@@ -47,12 +47,12 @@ public class User {
         this.name = name;
     }
 
-    public Set<Article> getArticleSet() {
-        return articleSet;
+    public Set<Product> getProductSet() {
+        return productSet;
     }
 
-    public void setArticleSet(Set<Article> articleSet) {
-        this.articleSet = articleSet;
+    public void setProductSet(Set<Product> productSet) {
+        this.productSet = productSet;
     }
 
     public Cart getCart() {
@@ -82,7 +82,7 @@ public class User {
         return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", articleSet=" + articleSet +
+                ", productSet=" + productSet +
                 '}';
     }
 }

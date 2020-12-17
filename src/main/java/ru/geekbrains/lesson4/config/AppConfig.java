@@ -34,7 +34,7 @@ public class AppConfig {
     }
 
     @Bean(name="entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean getEntityManager() {
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() { //нигде не вызывается!!!!!!!!
         // Создаем класса фабрики, реализующей интерфейс
         // FactoryBean<EntityManagerFactory>
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
