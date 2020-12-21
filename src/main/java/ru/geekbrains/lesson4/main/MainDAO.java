@@ -23,7 +23,7 @@ public class MainDAO {
 
         ProductDAO productDAO = applicationContext.getBean("productDAO", ProductDAO.class);
 
-        productDAO.findAll().stream().forEach(System.out::println);
+        //productDAO.findAll().stream().forEach(System.out::println);
 
 
     }

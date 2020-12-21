@@ -6,10 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import ru.geekbrains.lesson4.config.AppConfig;
 import ru.geekbrains.lesson4.data.ProductDataRepository;
-import ru.geekbrains.lesson4.data.ProductsPaginationRepository;
 import ru.geekbrains.lesson4.data.ProductsRepository;
 import ru.geekbrains.lesson4.entity.Product;
-import ru.geekbrains.lesson4.entity.User;
 
 public class Main {
 
@@ -19,7 +17,7 @@ public class Main {
 
         //ArticleDAO articleDAO = applicationContext.getBean("articleDAO", ArticleDAO.class);
         ProductDataRepository productDataRepository = applicationContext.getBean("productDataRepository", ProductDataRepository.class);
-        ProductsPaginationRepository productsPaginationRepository = applicationContext.getBean("productsPaginationRepository", ProductsPaginationRepository.class);
+        //ProductsPaginationRepository productsPaginationRepository = applicationContext.getBean("productsPaginationRepository", ProductsPaginationRepository.class);
 
 
         ProductsRepository productsRepository = applicationContext.getBean("productsRepository", ProductsRepository.class);
@@ -42,8 +40,8 @@ public class Main {
 
         Pageable pageable = PageRequest.of(0, 4);
 
-        Page<Product> articlePage = productsPaginationRepository.findAll(pageable);
-        System.out.println(articlePage.getContent());
+//        Page<Product> articlePage = productsPaginationRepository.findAll(pageable);
+//        System.out.println(articlePage.getContent());
     }
 
 }
