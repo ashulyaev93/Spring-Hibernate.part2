@@ -26,13 +26,6 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "something")
-    @OptimisticLock(excluded = true)
-    private String something;
-
-    @Version
-    long version;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_users",
@@ -74,26 +67,6 @@ public class Product {
         this.name = name;
     }
 
-    public String getSomething() {
-        return something;
-    }
-
-    public void setSomething(String something) {
-        this.something = something;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
     public List<User> getUsers() {
         return users;
     }
@@ -102,14 +75,17 @@ public class Product {
         this.users = users;
     }
 
+    public Long getQuantity(){return quantity;}
+
+    public void setQuantity(Long quantity){this.quantity = quantity;}
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
-                ", something='" + something + '\'' +
-                ", version=" + version +
+                ", quantity='" + quantity +
                 '}';
     }
 }

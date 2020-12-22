@@ -34,6 +34,7 @@ public class User {
         this.name = name;
     }
 
+
     public Long getId() {
         return id;
     }
@@ -41,6 +42,7 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;
@@ -50,21 +52,6 @@ public class User {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -84,8 +71,7 @@ public class User {
     public String toString() {
         return "User {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", products=" + products +
+                ", name='" + name +
                 '}';
     }
 }

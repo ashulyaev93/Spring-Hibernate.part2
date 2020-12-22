@@ -20,8 +20,11 @@ import ru.geekbrains.lesson4.data.ProductDataRepository;
 import ru.geekbrains.lesson4.data.ProductsRepository;
 import ru.geekbrains.lesson4.entity.Product;
 import ru.geekbrains.lesson4.entity.User;
+import ru.geekbrains.lesson4.services.impl.ProductServiceImpl;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
@@ -334,31 +337,33 @@ public class AppConfig {
 
     @Bean(name="productDAO")
     public ProductDAO getProductDAO() {
-        ProductDAO pd = new ProductDAO() {
-
+        ProductDAO pd = new ProductDAO(){
+            @PersistenceContext
+            private EntityManager entityManager;
             @Override
-            public List<Product> findAll() {
-                return null;
+            public List < Product > findAll () {
+                return entityManager . createQuery ( "from Product" ,
+                        Product . class ). getResultList ();
             }
-
             @Override
-            public void save(Product product) {
-
+            public void save ( Product product ) {
+                entityManager . persist ( product );
             }
-
             @Override
-            public Product findById(Long id) {
-                return null;
+            public Product findById ( Long id ) {
+                return entityManager . find ( Product . class , id );
             }
-
             @Override
-            public void update(Product product) {
-
+            public void update ( Product product ) {
+                entityManager . merge ( product );
             }
-
             @Override
-            public void delete(Product product) {
-
+            public void delete ( Product product ) {
+                entityManager . remove ( product );
+            }
+            @Override
+            public Double findMinPrice ( ) {
+                return (Double) entityManager . createQuery ( "SELECT MIN(PRICE) FROM PRODUCTS"). getSingleResult();
             }
         };
         return pd;

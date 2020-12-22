@@ -23,7 +23,7 @@ public class CartEntry {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "user_id")
     private Cart cart;
 
     public Long getId() {

@@ -21,12 +21,7 @@ public class Main {
 
 
         ProductsRepository productsRepository = applicationContext.getBean("productsRepository", ProductsRepository.class);
-//        productsRepository.save(new Product("New Title 1", new User("Alex")));
-//        productsRepository.save(new Product("New Title 2", new User("Alena")));
-//        productsRepository.save(new Product("New Title 3", new User("Milena")));
-//        productsRepository.save(new Product("New Title 4", new User("Lena")));
-//        productsRepository.save(new Product("New Title 5", new User("Artem")));
-        productsRepository.save(new Product("New Title 5", (long)100,10.0));
+
 
 
 //        List<Article> articles = articlesRepository.findByTitle("New Title");
@@ -38,7 +33,7 @@ public class Main {
 //        Optional<ArticleData> optional = articleDataRepository.findOneById(8L);
 //        System.out.println("id = " + optional.get().getId() + ", " + optional.get().getTitle());
 
-        Pageable pageable = PageRequest.of(0, 4);
+        Pageable pageable = PageRequest.of(1, 4);
 
 //        Page<Product> articlePage = productsPaginationRepository.findAll(pageable);
 //        System.out.println(articlePage.getContent());

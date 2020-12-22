@@ -23,8 +23,6 @@ public class MainLocks {
 
         Product p = new Product();
         p.setName("Apple");
-        p.setSomething("something");
-        p.setQuantity(100l);
         em.persist(p);
 
         em.getTransaction().commit();
@@ -42,20 +40,16 @@ public class MainLocks {
 
 
         product.setName("Orange");
-        System.out.println("Version1 = " + product.getVersion()); // <- 1
         System.out.println("product = " + product);
         em.flush();
         product.setName("Mango");
-        System.out.println("Version2 = " + product.getVersion()); // <- 2
         System.out.println("product = " + product);
         em.flush();
-        System.out.println("Version3 = " + product.getVersion()); // <- 3
         System.out.println("product = " + product);
         em.getTransaction().rollback();
 
         em.getTransaction().begin();
         product = em.find(Product.class, 1L);
-        System.out.println("Version4 = " + product.getVersion()); // <- 1
         System.out.println("product = " + product);
         em.getTransaction().commit();
 
@@ -63,8 +57,6 @@ public class MainLocks {
         em.getTransaction().begin();
         Product p2 = new Product();
         p2.setName("Apple");
-        p2.setSomething("something");
-        p2.setQuantity(400l);
         em.persist(p2);
         em.getTransaction().commit();
 
@@ -76,10 +68,10 @@ public class MainLocks {
                 .setLockMode(LockModeType.PESSIMISTIC_WRITE)
                 .getResultList();
 
-        for (Product item : products) {
-            allQuantity += item.getQuantity();
-        }
-        System.out.println("allQuantity = " + allQuantity);
+//        for (Product item : products) {
+//
+//        }
+
         em.getTransaction().commit();
 
         em.close();

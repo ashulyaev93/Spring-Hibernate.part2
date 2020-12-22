@@ -13,6 +13,7 @@ public interface ProductDAO {
     Product findById(Long id);
     void update(Product product);
     void delete(Product product);
+    public Double findMinPrice ( ) ;
 }
 
 @Repository
@@ -39,5 +40,9 @@ class ProductDAOImpl implements ProductDAO {
     @Override
     public void delete ( Product product ) {
         entityManager . remove ( product );
+    }
+    @Override
+    public Double findMinPrice ( ) {
+        return (Double) entityManager . createQuery ( "SELECT MIN(PRICE) FROM PRODUCTS"). getSingleResult();
     }
 }

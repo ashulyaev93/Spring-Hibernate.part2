@@ -22,6 +22,7 @@ public class MainDAO {
 
 
         ProductDAO productDAO = applicationContext.getBean("productDAO", ProductDAO.class);
+        System.out.println(productDAO.findMinPrice());
 
         //productDAO.findAll().stream().forEach(System.out::println);
 
