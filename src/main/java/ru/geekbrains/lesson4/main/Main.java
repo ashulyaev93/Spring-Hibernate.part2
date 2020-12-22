@@ -5,16 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import ru.geekbrains.lesson4.config.AppConfig;
-import ru.geekbrains.lesson4.dao.ArticleDAO;
-import ru.geekbrains.lesson4.data.ArticleData;
-import ru.geekbrains.lesson4.entity.Article;
-import ru.geekbrains.lesson4.entity.User;
-import ru.geekbrains.lesson4.repositories.ArticleDataRepository;
-import ru.geekbrains.lesson4.repositories.ArticlesPaginationRepository;
-import ru.geekbrains.lesson4.repositories.ArticlesRepository;
-
-import java.util.List;
-import java.util.Optional;
+import ru.geekbrains.lesson4.data.ProductDataRepository;
+import ru.geekbrains.lesson4.data.ProductsRepository;
+import ru.geekbrains.lesson4.entity.Product;
 
 public class Main {
 
@@ -23,21 +16,18 @@ public class Main {
 
 
         //ArticleDAO articleDAO = applicationContext.getBean("articleDAO", ArticleDAO.class);
-        ArticleDataRepository articleDataRepository = applicationContext.getBean("articleDataRepository", ArticleDataRepository.class);
-        ArticlesPaginationRepository articlesPaginationRepository = applicationContext.getBean("articlesPaginationRepository", ArticlesPaginationRepository.class);
+        ProductDataRepository productDataRepository = applicationContext.getBean("productDataRepository", ProductDataRepository.class);
+        //ProductsPaginationRepository productsPaginationRepository = applicationContext.getBean("productsPaginationRepository", ProductsPaginationRepository.class);
 
 
-        ArticlesRepository articlesRepository = applicationContext.getBean("articlesRepository", ArticlesRepository.class);
-        articlesRepository.save(new Article("New Title 1", new User("Alex")));
-        articlesRepository.save(new Article("New Title 2", new User("Alena")));
-        articlesRepository.save(new Article("New Title 3", new User("Milena")));
-        articlesRepository.save(new Article("New Title 4", new User("Lena")));
-        articlesRepository.save(new Article("New Title 5", new User("Artem")));
-        articlesRepository.save(new Article("New Title 6", new User("Polina")));
-        articlesRepository.save(new Article("New Title 7", new User("Vika")));
-        articlesRepository.save(new Article("New Title 8", new User("Veronika")));
-        articlesRepository.save(new Article("New Title 9", new User("Petr")));
-        articlesRepository.save(new Article("New Title 10", new User("Dima")));
+        ProductsRepository productsRepository = applicationContext.getBean("productsRepository", ProductsRepository.class);
+//        productsRepository.save(new Product("New Title 1", new User("Alex")));
+//        productsRepository.save(new Product("New Title 2", new User("Alena")));
+//        productsRepository.save(new Product("New Title 3", new User("Milena")));
+//        productsRepository.save(new Product("New Title 4", new User("Lena")));
+//        productsRepository.save(new Product("New Title 5", new User("Artem")));
+        productsRepository.save(new Product("New Title 5", (long)100,10.0));
+
 
 //        List<Article> articles = articlesRepository.findByTitle("New Title");
 //        System.out.println("articles = " + articles);
@@ -50,8 +40,8 @@ public class Main {
 
         Pageable pageable = PageRequest.of(0, 4);
 
-        Page<Article> articlePage = articlesPaginationRepository.findAll(pageable);
-        System.out.println(articlePage.getContent());
+//        Page<Product> articlePage = productsPaginationRepository.findAll(pageable);
+//        System.out.println(articlePage.getContent());
     }
 
 }

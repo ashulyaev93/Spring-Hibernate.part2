@@ -18,11 +18,15 @@ public class Cart {
     @Column(name = "code")
     private String code;
 
+//    Criteria criteria = session.createCriteria(User.class);
+//criteria.setFetchMode("roles", FetchMode.EAGER);
+
     @OneToMany(
             mappedBy = "cart",
             fetch = FetchType.EAGER
     )
-    List<CartEntry> cartEntryList = new ArrayList<>();
+
+   List<CartEntry> cartEntryList = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -44,13 +48,15 @@ public class Cart {
         this.code = code;
     }
 
-    public List<CartEntry> getCartEntryList() {
-        return cartEntryList;
-    }
-
-    public void setCartEntryList(List<CartEntry> cartEntryList) {
-        this.cartEntryList = cartEntryList;
-    }
+//    //===========
+//    public List<CartEntry> getCartEntryList() {
+//        return cartEntryList;
+//    }
+//
+//    public void setCartEntryList(List<CartEntry> cartEntryList) {
+//        this.cartEntryList = cartEntryList;
+//    }
+//    //===========
 
     public User getUser() {
         return user;

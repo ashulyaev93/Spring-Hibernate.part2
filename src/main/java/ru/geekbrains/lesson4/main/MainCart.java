@@ -61,8 +61,10 @@ public class MainCart {
         cartEntryService.addProduct(cart2, product4, 5);
         cartEntryService.addProduct(cart2, product5, 3);
 
+
+        //===при запуске Main.Cart здесь org.hibernate.LazyInitializationException : could not initialize proxy – no Session===
         Cart cartAlex = cartService.getByCode("0001");
-        System.out.println("cartAlex = " + cartAlex);
+        //System.out.println("cartAlex = " + cartAlex);
 
         List<Product> productList1 = productService.findAllByPriceGreaterThan(30.0);
         System.out.println("productList1 = " + productList1);
@@ -71,12 +73,12 @@ public class MainCart {
         System.out.println(productList2);
 
         Cart cartAlena = cartService.findCartByUser(user2);
-        System.out.println("cartAlena = " + cartAlena);
+        //System.out.println("cartAlena = " + cartAlena);
 
         Product product = productService.findByName("Lemon");
 
         List<Cart> carts = cartService.findAllCartsByProduct(product);
-        System.out.println("carts = " + carts);
+        //System.out.println("carts = " + carts);
 
     }
 }

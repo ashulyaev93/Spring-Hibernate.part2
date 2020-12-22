@@ -4,15 +4,27 @@ package ru.geekbrains.lesson4.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import ru.geekbrains.lesson4.dao.impl.ProductDAO;
+import ru.geekbrains.lesson4.data.ProductData;
+import ru.geekbrains.lesson4.data.ProductDataRepository;
+import ru.geekbrains.lesson4.data.ProductsRepository;
+import ru.geekbrains.lesson4.entity.Product;
+import ru.geekbrains.lesson4.entity.User;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 @Configuration
@@ -34,7 +46,7 @@ public class AppConfig {
     }
 
     @Bean(name="entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean getEntityManager() {
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         // Создаем класса фабрики, реализующей интерфейс
         // FactoryBean<EntityManagerFactory>
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -69,5 +81,286 @@ public class AppConfig {
         JpaTransactionManager tm = new JpaTransactionManager();
         tm.setEntityManagerFactory(entityManagerFactory);
         return tm;
+    }
+
+    @Bean(name="productDataRepository")
+    public ProductDataRepository getProductDataRepository() {
+        ProductDataRepository dr = new ProductDataRepository() {
+            @Override
+            public List<Product> findAll() {
+                return null;
+            }
+            @Override
+            public List<Product> findAll(Sort sort) {
+                return null;
+            }
+            @Override
+            public Page<Product> findAll(Pageable pageable) {
+                return null;
+            }
+            @Override
+            public List<Product> findAllById(Iterable<Long> iterable) {
+                return null;
+            }
+            @Override
+            public long count() {
+                return 0;
+            }
+            @Override
+            public void deleteById(Long aLong) {
+
+            }
+            @Override
+            public void delete(Product product) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends Product> iterable) {
+
+            }
+            @Override
+            public void deleteAll() {
+
+            }
+            @Override
+            public <S extends Product> S save(S s) {
+                return null;
+            }
+            @Override
+            public <S extends Product> List<S> saveAll(Iterable<S> iterable) {
+                return null;
+            }
+            @Override
+            public Optional<Product> findById(Long aLong) {
+                return Optional.empty();
+            }
+            @Override
+            public boolean existsById(Long aLong) {
+                return false;
+            }
+            @Override
+            public void flush() {
+
+            }
+            @Override
+            public <S extends Product> S saveAndFlush(S s) {
+                return null;
+            }
+            @Override
+            public void deleteInBatch(Iterable<Product> iterable) {
+
+            }
+            @Override
+            public void deleteAllInBatch() {
+
+            }
+            @Override
+            public Product getOne(Long aLong) {
+                return null;
+            }
+            @Override
+            public <S extends Product> Optional<S> findOne(Example<S> example) {
+                return Optional.empty();
+            }
+            @Override
+            public <S extends Product> List<S> findAll(Example<S> example) {
+                return null;
+            }
+            @Override
+            public <S extends Product> List<S> findAll(Example<S> example, Sort sort) {
+                return null;
+            }
+            @Override
+            public <S extends Product> Page<S> findAll(Example<S> example, Pageable pageable) {
+                return null;
+            }
+            @Override
+            public <S extends Product> long count(Example<S> example) {
+                return 0;
+            }
+            @Override
+            public <S extends Product> boolean exists(Example<S> example) {
+                return false;
+            }
+            @Override
+            public Optional<ProductData> findOneById(Long id) {
+                return Optional.empty();
+            }
+        };
+        return dr;
+    }
+
+    @Bean(name="productsRepository")
+    public ProductsRepository getProductsRepository() {
+        ProductsRepository pr = new ProductsRepository() {
+            @Override
+            public List<Product> findAll() {
+                return null;
+            }
+
+            @Override
+            public List<Product> findAll(Sort sort) {
+                return null;
+            }
+
+            @Override
+            public Page<Product> findAll(Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public List<Product> findAllById(Iterable<Long> iterable) {
+                return null;
+            }
+
+            @Override
+            public long count() {
+                return 0;
+            }
+
+            @Override
+            public void deleteById(Long aLong) {
+
+            }
+
+            @Override
+            public void delete(Product product) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends Product> iterable) {
+
+            }
+
+            @Override
+            public void deleteAll() {
+
+            }
+
+            @Override
+            public <S extends Product> S save(S s) {
+                return null;
+            }
+
+            @Override
+            public <S extends Product> List<S> saveAll(Iterable<S> iterable) {
+                return null;
+            }
+
+            @Override
+            public Optional<Product> findById(Long aLong) {
+                return Optional.empty();
+            }
+
+            @Override
+            public boolean existsById(Long aLong) {
+                return false;
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public <S extends Product> S saveAndFlush(S s) {
+                return null;
+            }
+
+            @Override
+            public void deleteInBatch(Iterable<Product> iterable) {
+
+            }
+
+            @Override
+            public void deleteAllInBatch() {
+
+            }
+
+            @Override
+            public Product getOne(Long aLong) {
+                return null;
+            }
+
+            @Override
+            public <S extends Product> Optional<S> findOne(Example<S> example) {
+                return Optional.empty();
+            }
+
+            @Override
+            public <S extends Product> List<S> findAll(Example<S> example) {
+                return null;
+            }
+
+            @Override
+            public <S extends Product> List<S> findAll(Example<S> example, Sort sort) {
+                return null;
+            }
+
+            @Override
+            public <S extends Product> Page<S> findAll(Example<S> example, Pageable pageable) {
+                return null;
+            }
+
+            @Override
+            public <S extends Product> long count(Example<S> example) {
+                return 0;
+            }
+
+            @Override
+            public <S extends Product> boolean exists(Example<S> example) {
+                return false;
+            }
+
+            @Override
+            public List<Product> findByTitle(String title) {
+                return null;
+            }
+
+            @Override
+            public Product findOneByTitle(String title) {
+                return null;
+            }
+
+            @Override
+            public List<Product> findProductByUser(User user) {
+                return null;
+            }
+        };
+        return pr;
+    }
+
+    @Bean(name="productDAO")
+    public ProductDAO getProductDAO() {
+        ProductDAO pd = new ProductDAO() {
+
+            @Override
+            public List<Product> findAll() {
+                return null;
+            }
+
+            @Override
+            public void save(Product product) {
+
+            }
+
+            @Override
+            public Product findById(Long id) {
+                return null;
+            }
+
+            @Override
+            public void update(Product product) {
+
+            }
+
+            @Override
+            public void delete(Product product) {
+
+            }
+        };
+        return pd;
     }
 }

@@ -15,14 +15,17 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(
-            mappedBy = "user",
-            fetch = FetchType.EAGER
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "products_users",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    Set<Article> articleSet = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
+
 
     public User() {
     }
@@ -47,12 +50,12 @@ public class User {
         this.name = name;
     }
 
-    public Set<Article> getArticleSet() {
-        return articleSet;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setArticleSet(Set<Article> articleSet) {
-        this.articleSet = articleSet;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Cart getCart() {
@@ -82,7 +85,7 @@ public class User {
         return "User {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", articleSet=" + articleSet +
+                ", products=" + products +
                 '}';
     }
 }
