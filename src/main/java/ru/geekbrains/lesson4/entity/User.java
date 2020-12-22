@@ -15,14 +15,17 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(
-            mappedBy = "user",
-            fetch = FetchType.EAGER
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "products_users",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    Set<Article> articleSet = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
+
 
     public User() {
     }
@@ -30,6 +33,7 @@ public class User {
     public User(String name) {
         this.name = name;
     }
+
 
     public Long getId() {
         return id;
@@ -39,6 +43,7 @@ public class User {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -47,21 +52,6 @@ public class User {
         this.name = name;
     }
 
-    public Set<Article> getArticleSet() {
-        return articleSet;
-    }
-
-    public void setArticleSet(Set<Article> articleSet) {
-        this.articleSet = articleSet;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -81,8 +71,7 @@ public class User {
     public String toString() {
         return "User {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", articleSet=" + articleSet +
+                ", name='" + name +
                 '}';
     }
 }

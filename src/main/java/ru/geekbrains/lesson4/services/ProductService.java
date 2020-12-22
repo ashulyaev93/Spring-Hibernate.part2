@@ -14,4 +14,5 @@ public interface ProductService {
     List<Product> findAllByPriceGreaterThan(Double price);
     List<Product> findAllByPriceGreaterThanOrderByPriceDesc(Double price);
 
+    Product findByMinPrice();
 }

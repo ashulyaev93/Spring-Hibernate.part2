@@ -3,6 +3,10 @@ package ru.geekbrains.lesson4.entity;
 import org.hibernate.annotations.OptimisticLock;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -22,12 +26,13 @@ public class Product {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "something")
-    @OptimisticLock(excluded = true)
-    private String something;
-
-    @Version
-    long version;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "products_users",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users = new ArrayList<>();
 
     public Product() {
     }
@@ -62,25 +67,17 @@ public class Product {
         this.name = name;
     }
 
-    public String getSomething() {
-        return something;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setSomething(String something) {
-        this.something = something;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public Long getQuantity() {
-        return quantity;
-    }
+    public Long getQuantity(){return quantity;}
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public long getVersion() {
-        return version;
-    }
+    public void setQuantity(Long quantity){this.quantity = quantity;}
 
     @Override
     public String toString() {
@@ -88,8 +85,7 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
-                ", something='" + something + '\'' +
-                ", version=" + version +
+                ", quantity='" + quantity +
                 '}';
     }
 }

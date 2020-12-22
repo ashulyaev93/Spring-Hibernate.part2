@@ -2,10 +2,10 @@ package ru.geekbrains.lesson4.main;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.geekbrains.lesson4.config.AppConfig;
-import ru.geekbrains.lesson4.dao.ArticleDAO;
-import ru.geekbrains.lesson4.entity.Article;
+import ru.geekbrains.lesson4.dao.impl.ProductDAO;
+import ru.geekbrains.lesson4.data.ProductsRepository;
+import ru.geekbrains.lesson4.entity.Product;
 import ru.geekbrains.lesson4.entity.User;
-import ru.geekbrains.lesson4.repositories.ArticlesRepository;
 
 public class MainDAO {
 
@@ -13,16 +13,18 @@ public class MainDAO {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
 
-        ArticlesRepository articlesRepository = applicationContext.getBean("articlesRepository", ArticlesRepository.class);
+        ProductsRepository productsRepository = applicationContext.getBean("productsRepository", ProductsRepository.class);
 
-        articlesRepository.save(new Article("New Title 1", new User("Alex")));
-        articlesRepository.save(new Article("New Title 2", new User("Alena")));
-        articlesRepository.save(new Article("New Title 3", new User("Milena")));
+//        productsRepository.save(new Product("New Title 1", new User("Alex")));
+//        productsRepository.save(new Product("New Title 2", new User("Alena")));
+//        productsRepository.save(new Product("New Title 3", new User("Milena")));
+        productsRepository.save(new Product("New Title 5", (long)100,10.0));
 
 
-        ArticleDAO articleDAO = applicationContext.getBean("articleDAO", ArticleDAO.class);
+        ProductDAO productDAO = applicationContext.getBean("productDAO", ProductDAO.class);
+        System.out.println(productDAO.findMinPrice());
 
-        articleDAO.findAll().stream().forEach(System.out::println);
+        //productDAO.findAll().stream().forEach(System.out::println);
 
 
     }

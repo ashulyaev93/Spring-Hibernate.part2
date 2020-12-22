@@ -58,4 +58,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByPriceGreaterThanOrderByPriceDesc(price);
     }
 
+    @Override
+    public Product findByMinPrice() {
+        return productRepository.findByMinPrice();
+    }
+
+
 }
